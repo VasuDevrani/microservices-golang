@@ -1,4 +1,4 @@
-package server
+package main
 
 import (
 	"io"
@@ -7,7 +7,7 @@ import (
 	pb "grpc/protos"
 )
 
-func (s *helloServer) SayHelloClientStreaming(stream pb.GreetService_SayHelloClientStreamServer) error {
+func (s *helloServer) SayHelloClientStream(stream pb.GreetService_SayHelloClientStreamServer) error {
 	var messages []string
 	for {
 		req, err := stream.Recv()

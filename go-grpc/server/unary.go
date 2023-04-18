@@ -1,4 +1,4 @@
-package server
+package main
 
 import (
 	"context"
@@ -6,7 +6,7 @@ import (
 	pb "grpc/protos"
 )
 
-func (s *helloServer) SayHello(ctx context.Context, req *pb.NoParam) (*pb.HelloResponse, error) {
+func (s *helloServer) SatHello(ctx context.Context, req *pb.NoParam) (*pb.HelloResponse, error) {
 	return &pb.HelloResponse{
 		Message: "Hello",
 	}, nil

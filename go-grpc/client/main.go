@@ -1,11 +1,11 @@
-package client
+package main
 
 import (
 	"log"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-	// pb "grpc/protos"
+	pb "grpc/protos"
 )
 
 const (
@@ -20,11 +20,14 @@ func main() {
 
 	defer con.Close()
 
-	// client := pb.NewGreetServiceClient(con)
+	client := pb.NewGreetServiceClient(con)
 
-	// names := &pb.NameList{
-	// 	Names: []string{"Vasu", "Dev", "Com"},
-	// }
+	names := &pb.NameList{
+		Names: []string{"Akhil", "Alice", "Bob"},
+	}
 
-
+	// callSayHello(client)
+	// callSayHelloServerStream(client, names)
+	//callSayHelloClientStream(client, names)
+	callSayHelloBidirectionalStream(client, names)
 }

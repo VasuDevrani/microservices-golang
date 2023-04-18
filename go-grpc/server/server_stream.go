@@ -1,4 +1,4 @@
-package server
+package main
 
 import (
 	"log"
@@ -7,7 +7,7 @@ import (
 	pb "grpc/protos"
 )
 
-func (s *helloServer) SayHelloServerStreaming(req *pb.NameList, stream pb.GreetService_SayHelloServerStreamServer) error {
+func (s *helloServer) SayHelloServerStream(req *pb.NameList, stream pb.GreetService_SayHelloServerStreamServer) error {
 	log.Printf("Got request with names : %v", req.Names)
 	for _, name := range req.Names {
 		res := &pb.HelloResponse{

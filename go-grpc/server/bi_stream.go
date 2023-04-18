@@ -1,4 +1,4 @@
-package server
+package main
 
 import (
 	"io"
@@ -7,7 +7,7 @@ import (
 	pb "grpc/protos"
 )
 
-func (s *helloServer) SayHelloBidirectionalStreaming(stream pb.GreetService_SayHelloBiServer) error {
+func (s *helloServer) SayHelloBi(stream pb.GreetService_SayHelloBiServer) error {
 	for {
 		req, err := stream.Recv()
 		if err == io.EOF {
