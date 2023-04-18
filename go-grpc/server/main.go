@@ -1,8 +1,11 @@
-package main
+package server
 
 import (
+	"fmt"
 	"log"
 	"net"
+
+	pb "grpc/protos"
 
 	"google.golang.org/grpc"
 )
@@ -10,6 +13,10 @@ import (
 const (
 	port = ":8080"
 )
+
+type helloServer struct {
+	pb.GreetServiceServer
+}
 
 func main() {
 	lis, err := net.Listen("tcp", port)
@@ -19,7 +26,9 @@ func main() {
 
 	grpcServer := grpc.NewServer()
 
-	// pb.RegisterGreetServiceServer
+	pb.RegisterGreetServiceServer(grpcServer, &helloServer{})
+
+	fmt.Printf("Server started at %v", lis.Addr())
 
 	if err := grpcServer.Serve(lis); err != nil{
 		log.Fatal("Failed to start")
